@@ -4,23 +4,22 @@
 ## AnyKernel setup
 # begin properties
 properties() { '
-kernel.string=ExampleKernel by osm0sis @ xda-developers
-do.devicecheck=1
+kernel.string=Stardust! X00T Kernel
+do.devicecheck=0
 do.modules=0
 do.systemless=1
 do.cleanup=1
 do.cleanuponabort=0
-device.name1=maguro
-device.name2=toro
-device.name3=toroplus
-device.name4=tuna
-device.name5=
-supported.versions=
-supported.patchlevels=
+device.name1=ASUS_X00TD
+device.name2=X00TD
+device.name3=X00T
+device.name4=ASUS_X00T
+device.name5=ASUS_X00TDA
+supported.versions=8.1 - 10.0
 '; } # end properties
 
 # shell variables
-block=/dev/block/platform/omap/omap_hsmmc.0/by-name/boot;
+block=/dev/block/platform/soc/c0c4000.sdhci/by-name/boot;
 is_slot_device=0;
 ramdisk_compression=auto;
 
@@ -41,21 +40,30 @@ dump_boot;
 
 # begin ramdisk changes
 
-# init.rc
-backup_file init.rc;
-replace_string init.rc "cpuctl cpu,timer_slack" "mount cgroup none /dev/cpuctl cpu" "mount cgroup none /dev/cpuctl cpu,timer_slack";
+rm -rf $ramdisk/init.trb.rc;
+rm -rf $ramdisk/init.azure.rc;
+rm -rf $ramdisk/init.Pbh.rc;
+rm -rf $ramdisk/init.PbH.rc;
+rm -rf $ramdisk/init.darkonah.rc;
+rm -rf $ramdisk/init.spectrum.rc;
+rm -rf $ramdisk/init.spectrum.sh;
+rm -rf $ramdisk/init.special_power.sh;
+rm -rf $ramdisk/init.thundercloud.rc;
+rm -rf $ramdisk/init.thundercloud.sh;
+rm -rf $ramdisk/init.overdose.rc
+rm -rf $ramdisk/init.overdose.sh
 
-# init.tuna.rc
-backup_file init.tuna.rc;
-insert_line init.tuna.rc "nodiratime barrier=0" after "mount_all /fstab.tuna" "\tmount ext4 /dev/block/platform/omap/omap_hsmmc.0/by-name/userdata /data remount nosuid nodev noatime nodiratime barrier=0";
-append_file init.tuna.rc "bootscript" init.tuna;
-
-# fstab.tuna
-backup_file fstab.tuna;
-patch_fstab fstab.tuna /system ext4 options "noatime,barrier=1" "noatime,nodiratime,barrier=0";
-patch_fstab fstab.tuna /cache ext4 options "barrier=1" "barrier=0,nomblk_io_submit";
-patch_fstab fstab.tuna /data ext4 options "data=ordered" "nomblk_io_submit,data=writeback";
-append_file fstab.tuna "usbdisk" fstab;
+remove_line init.rc "import /init.trb.rc"
+remove_line init.rc "import /init.azure.rc"
+remove_line init.rc "import /init.PbH.rc"
+remove_line init.rc "import /init.Pbh.rc"
+remove_line init.rc "import /init.darkonah.rc"
+remove_line init.rc "import /init.overdose.rc"
+remove_line init.rc "import /init.thundercloud.rc"
+remove_line init.rc "import /init.spectrum.rc"
+remove_line init.rc "import /init.pk.rc"
+remove_line init.rc "import /init.boost.rc"
+remove_line init.rc "import /init.stardust.rc"
 
 # end ramdisk changes
 
