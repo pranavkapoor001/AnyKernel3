@@ -15,7 +15,7 @@ device.name2=X00TD
 device.name3=X00T
 device.name4=ASUS_X00T
 device.name5=ASUS_X00TDA
-supported.versions=8.1 - 10.0
+supported.versions=8.1 - 11
 '; } # end properties
 
 # shell variables
