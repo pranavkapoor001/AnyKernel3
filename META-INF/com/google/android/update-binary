@@ -461,6 +461,17 @@ if [ -f version ]; then
 fi;
 ui_print " " "AnyKernel3 by osm0sis @ xda-developers" " " " ";
 
+ui_print "                          "
+ui_print "    ###############################"
+ui_print "    ##         Stardust          ##"
+ui_print "    ###############################"
+ui_print "                          "
+ui_print "                          "  
+ui_print "    By: pranavkpr @ xda-developers"  
+ui_print "                          "
+ui_print "                          "  
+ui_print "                          "
+
 setup_env;
 
 do_devicecheck;
